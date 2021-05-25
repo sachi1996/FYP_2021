@@ -3,26 +3,24 @@ import pickle
 import sys
 from NewSegmentation.NewWholeSegmenting import arr1
 from NewSegmentation.NewWholeSegmenting import arr2
+from NewSegmentation.NewWholeSegmenting import question_slices
 
 ################################################################
-cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Input_rmophl.csv')
+cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Input_Roof.csv')
 
-pick = open('../CharacterClassification/BSavedModels/rmophl.sav', 'rb')
+pick = open('../BSavedModels/Input_Roof6.sav', 'rb')
 model = pickle.load(pick)
 pick.close()
 
 # predict the character
-predicted_chars = model.predict(cell_df_new[0:119])
-# print(character)
-
-print("Predicted Chars", predicted_chars)
-print("Length of Predicted Chars", len(predicted_chars))
+predicted_chars = model.predict(cell_df_new[0:120])
 
 
-categories = ['o', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
-              'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm',
-              'n', 'p', 'r', 's', 't', 'u', 'w', 'y', 'z', 'B',
-              'F', 'H', 'T', 'I', '35', '36', '37', '38', '39', '.']
+# categories of SVM Model
+categories = ['o', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+              'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k',
+              'l', 'm', 'n', 'p', 'r', 's', 't', 'u', 'v', 'w',
+              'y', 'z', 'B', 'F', 'H', 'I', 'N', 'R', 'T', '39', '.']
 
 
 new_predicion = []
@@ -31,13 +29,32 @@ for i in range(0, len(predicted_chars)):
     index = predicted_chars[i]
     new_predicion.append(categories[index])
 
-print("New Prediction", new_predicion)
 ################################################################
 
 
+# Assign arrays which import from NewWholeSegmenting file
 word = arr2
 char = arr1
+question = question_slices
 
+
+
+# Set No. of lines for each question
+QuestionLines = []
+pvot_Q = 0
+index_Q = 0
+
+for i in range(0, len(question_slices)):
+    index_Q = index_Q + question_slices[i]
+    newArr = []
+    for j in range(pvot_Q, index_Q):
+        newArr.append(word[j])
+    QuestionLines.append(newArr)
+    pvot_Q = pvot_Q + question_slices[i]
+
+
+
+# set No.of words for each line
 WordChar = []
 pvot = 0
 index = 0
@@ -51,10 +68,58 @@ for i in range(0, len(word)):
     pvot = pvot + word[i]
 
 
-print(" ")
-print(" ")
+print()
+
+# print a Template of student Answersheet
+print("Template of the Answer")
+print()
+star = "*"
+vote = -1
+newid = 0
+newcat = 0
+for i in range(0, len(QuestionLines)):
+    item = QuestionLines[i]
+    for j in range(0, len(item)):
+        vote = vote + 1
+        WChar = WordChar[vote]
+        wordlength = item[j]
+        for k in range(0, wordlength):
+            sys.stdout.write(str(star*WChar[k]))
+            sys.stdout.write(" ")
+        print()
+    print()
+
+print()
+print()
 
 
+
+print()
+print("Real Answer")
+print()
+# prin Actual results
+vote = -1
+newid = 0
+newcat = 0
+for i in range(0, len(QuestionLines)):
+    item = QuestionLines[i]
+    for j in range(0, len(item)):
+        vote = vote + 1
+        WChar = WordChar[vote]
+        wordlength = item[j]
+        for k in range(0, wordlength):
+            newcat = newcat + WChar[k]
+            for t in range(newid, newcat):
+                sys.stdout.write(str(new_predicion[t]))
+            newid = newid + WChar[k]
+            sys.stdout.write(" ")
+        print()
+    print()
+
+
+############################################################################
+"""
+# print Template without considering each question
 star = "*"
 for j in range(0, len(word)):
     element = WordChar[j]
@@ -64,9 +129,11 @@ for j in range(0, len(word)):
     print()
 
 
+
+
+# print Actual result without considering each question
 index = 0
 kat = 0
-
 
 for j in range(0, len(word)):
     element = WordChar[j]
@@ -78,4 +145,5 @@ for j in range(0, len(word)):
         index = index + no_of_char
         sys.stdout.write(" ")
     print()
-
+"""
+############################################################################

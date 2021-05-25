@@ -5,7 +5,7 @@ from NewSegmentation.NewLineSeg import projection_segment
 from NewSegmentation.NewWordSeg import word_segment
 from NewSegmentation.NewCharSeg import char_segment
 
-inputImage = 'G:/imwrite images/Given Images/Input/rmophl.jpg'
+inputImage = 'G:/imwrite images/Given Images/Input_Roof.jpg'
 fullImage = cv2.imread(inputImage)
 plt.imshow(fullImage, cmap="gray")
 plt.show()
@@ -24,6 +24,7 @@ char_count = 0
 
 arr1 = []
 arr2 = []
+questionArr = []
 ###########################################################################################
 # Apply preProcessing for input image
 
@@ -56,6 +57,38 @@ word_character_start = []
 word_character_end = []
 
 projection_segment(horizontal_projection, row_index, height, line_start, line_end)
+
+###########################################################################
+# get how many lines along with each question
+line_differences = []
+
+for i in range(0, len(line_end)):
+    if i == (len(line_end)-1):
+        break
+    else:
+        line_differences.append(line_start[i+1]-line_end[i])
+
+
+
+question_slices = []
+demo_arr = [0]
+pvot = 0
+for i in range(0, len(line_differences)):
+    if line_differences[i] > 100:
+        demo_arr.append(i+1)
+
+demo_arr.append(len(line_start))
+
+for i in range(0, len(demo_arr)):
+    count = i + 1
+    if count == len(demo_arr):
+        break
+    else:
+        question_slices.append(demo_arr[count]-demo_arr[i])
+
+
+###########################################################################
+
 
 line_slices = []
 word_slices = []

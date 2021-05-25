@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
-cell_df = pd.read_csv('../../B_Post_Processing/rmophl.csv')
+cell_df = pd.read_csv('../CSV Files/HR_Features/Input_Roof_All.csv')
 
 X = cell_df.drop(['target_names', 'target'], axis='columns')
 y = cell_df.target
@@ -21,9 +21,11 @@ cls.fit(X_train, y_train)
 predict = cls.predict(X_test)
 accuracy = cls.score(X_test, y_test)
 
-pick = open('F:/Python/OpenCV/CharacterClassification/BSavedModels/rmophl.sav', 'wb')
+
+pick = open('F:/Python/OpenCV/BSavedModels/Input_Roof6.sav', 'wb')
 pickle.dump(cls, pick)
 pick.close()
+
 
 # accuracy
 Accuracy = metrics.accuracy_score(y_test, y_pred=predict)
