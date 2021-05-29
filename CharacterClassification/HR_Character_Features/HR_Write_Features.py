@@ -12,7 +12,7 @@ def append_list_as_row(filename, list_of_elem):
         # Create a writer object from csv module
         csvwriter = csv.writer(csvfile)
         # Add field names
-        csvwriter.writerow(fields)
+        # csvwriter.writerow(fields)
         # Add contents of list as last row in the csv file
         csvwriter.writerows(list_of_elem)
 
@@ -112,7 +112,7 @@ for t in range(0, len(BigChar)):
 
     ############################################################################### - - - - > ChainCode
     d1, d2, d3, d4, d5, d6, d7, d8 = chaincode(char_img)
-    total_chain = d1 + d2 + d3 + d4 + d5 + + d6 + d7 + d8
+    total_chain = d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8
     percentage_transition_zone_chain = 100 / total_chain
 
     ChainVector.append(d1 * percentage_transition_zone_chain)
@@ -172,26 +172,39 @@ for t in range(0, len(BigChar)):
     arr.append(AllFeatures)
 
 
-character_data = ['1', 'dot', 'a', 'dot', 'T', 'b', 'dot', 'F', 'c', 'dot', 'T', 'd', 'dot', 'F',
-                  '2', 'dot', 'e', 'n', 'v', 'i', 'r', 'O', 'n', 'm', 'a', 'n', 't', 'a', 'l',
-                  'f', 'r', 'i', 'e', 'n', 'd', 'l', 'y', '3', 'dot', 'B', 'e', 'c', 'a', 'u', 's', 'e',
-                  'i', 't', 'r', 'a', 'i', 'n', 'e', 'd', 's', 'O', 'h', 'a', 'r', 'd',
-                  '4', 'dot', 'N', 'u', 'r', 's', 'e', 'r', 'y', 'R', 'O', 'O', 'm', '5', 'dot',
-                  'R', 'O', 'O', 'f', 'h', 'a', 'v', 'e', 'a', 't', 'r', 'e', 'e', 'O', 'n', 't', 'O', 'p',
-                  'O', 'f', 'i', 't', '6', 'dot', 'b', '7', 'dot', '1', 'dot',
-                  'B', 'u', 'i', 'l', 'd', 'e', 'r', 's', '2', 'dot', 's', 'c', 'h', 'O', 'O', 'l']
+"""
+character_data = ['1', 'dot', '1', 'dot', 'F', '2', 'dot', 'T', '3', 'dot', 'T', '4', 'dot', 'F',
+                  '2', 'dot', 'J', 'a', 'm', 'e', 's', '3', 'dot', 'e', 'v', 'e', 'r', 'y', 't', 'h',
+                  'i', 'n', 'g', 't', 'u', 'm', 'b', 'l', 'e', 'd', 'O', 'u', 't', 'O', 'n', 't', 'O',
+                  't', 'h', 'e', 'f', 'l', 'O', 'O', 'r', 'dot', '4', 'dot', 't', 'O', 'f', 'e', 'e', 'w', 'r',
+                  'a', 'p', 'p', 'e', 'r', 's', 'comma', 'c', 'l', 'O', 't', 'h', 'e', 's', '5', 'dot',
+                  'm', 'u', 'm', 'w', 'O', 'u', 'l', 'd', 'b', 'e', 'c', 'a', 'l', 'l', 'comma', 'c', 'O',
+                  'm', 'e', 'a', 'n', 'd', 'l', 'O', 'O', 'k', 'a', 't', 't', 'h', 'i', 's', 'r', 'O', 'O', 'm',
+                  'dot', 'I', 't', 'i', 's', 'a', 'w', 'f', 'u', 'l', 'dot', '6', 'dot', 'a', 'dot', 'm', 'e', 's', 's',
+                  'b', 'dot', 'e', 'n', 'O', 'u', 'g', 'h', '7', 'dot', 'a', 'dot', 'b', 'e', 'd', 'r', 'O', 'O',
+                  'm', 'b', 'dot', 'J', 'a', 'm', 'e', 's']
 
 
-labels = [1, 40, 10, 40, 38, 11, 40, 33, 12, 40, 38, 13, 40, 33, 2, 40, 14, 22, 28, 18, 24, 0, 22, 21,
-          10, 22, 26, 10, 20, 15, 24, 18, 14, 22, 13, 20, 30, 3, 40, 32, 14, 12, 10, 27, 25, 14, 18, 26,
-          24, 10, 18, 22, 14, 13, 25, 0, 17, 10, 24, 13, 4, 40, 36, 27, 24, 25, 14, 24, 30, 37, 0, 0, 21,
-          5, 40, 37, 0, 0, 15, 17, 10, 28, 14, 10, 26, 24 ,14, 14, 0, 22, 26, 0, 23, 0, 15, 18, 26,
-          6, 40, 11, 7, 40, 1, 40, 32, 27, 18, 20, 13, 14, 24, 25, 2, 40, 25, 12, 17, 0, 0, 20]
+labels = [1,  40, 1, 40, 33, 2, 40, 38, 3, 40, 38, 4, 40, 33, 2, 40, 42, 10, 21, 14, 25, 3, 40, 14, 28,
+          14, 24, 30, 26, 17, 18, 22, 16, 26, 27, 21, 11, 20, 14, 13, 0, 27, 26, 0, 22, 26, 0,
+          26, 17, 14, 15, 20, 0, 0, 24, 40, 4, 40, 26, 0, 15, 14, 14, 29, 24, 10, 23, 23, 14, 24, 25, 41,
+          12, 20, 0, 26, 17, 14, 25, 5, 40, 21, 27, 21, 29, 0, 27, 20, 13, 11, 14, 12, 10, 20, 20,
+          41, 12, 0, 21, 14, 10, 22, 13, 20, 0, 0, 19, 10, 26, 26, 17, 18, 25, 24, 0, 0, 21, 40,
+          35, 26, 18, 25, 10, 29, 15, 27, 20, 40, 6, 40, 10, 40, 21, 14, 25, 25, 11, 40, 14, 22, 0, 27, 16, 17,
+          7, 40, 10, 40, 11, 14, 13, 24, 0, 0, 21, 11, 40, 42, 10, 21, 14, 25]
+"""
+
+character_data = ['1', 'dot', 'm', 'u', 'm', 'w', 'O', 'u', 'l', 'd', 'c', 'a', 'l', 'l', '2', 'dot',
+                  'H', 'e', 'comma', 'a', 's', 'k', 'e', 'd', 't', 'O', 'g', 'O', 'h', 'O', 'm', 'e']
 
 
-for i in range(0, len(character_data)):
-    print(str(character_data[i]) + " : " + str(labels[i]))
+labels = [1, 40, 21, 27, 21, 29, 0, 27, 20, 13, 12, 10, 20, 20,
+          2, 40, 34, 14, 41, 10, 25, 19, 14, 13, 26, 0, 16, 0, 17, 0, 21, 14]
 
+print()
+
+for i in range(0,len(character_data)):
+    print(character_data[i], labels[i])
 
     ############################################################################### - - - - > Create CSV File
 fields = ['target_names', 'direction1',
@@ -243,7 +256,7 @@ for i in range(len(arr)):
            labels[i]]
     rows.append(row)
 
-filename = "F:/Python/OpenCV/CharacterClassification/CSV Files/New_All_Characters/All_Characters.csv"
+filename = "F:/Python/OpenCV/CharacterClassification/CSV Files/Input_Character_CSV/Demo.csv"
 
 
 def append_list_as_row(filename, list_of_elem):
@@ -252,7 +265,7 @@ def append_list_as_row(filename, list_of_elem):
         # Create a writer object from csv module
         csvwriter = csv.writer(csvfile)
         # Add field names
-        # csvwriter.writerow(fields)
+        csvwriter.writerow(fields)
         # Add contents of list as last row in the csv file
         csvwriter.writerows(list_of_elem)
 

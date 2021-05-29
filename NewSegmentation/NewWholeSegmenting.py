@@ -5,7 +5,7 @@ from NewSegmentation.NewLineSeg import projection_segment
 from NewSegmentation.NewWordSeg import word_segment
 from NewSegmentation.NewCharSeg import char_segment
 
-inputImage = 'G:/imwrite images/Given Images/Input_Roof.jpg'
+inputImage = 'G:/imwrite images/Given Images/James.jpg'
 fullImage = cv2.imread(inputImage)
 plt.imshow(fullImage, cmap="gray")
 plt.show()
@@ -68,16 +68,18 @@ for i in range(0, len(line_end)):
     else:
         line_differences.append(line_start[i+1]-line_end[i])
 
-
+print(line_differences)
 
 question_slices = []
 demo_arr = [0]
 pvot = 0
 for i in range(0, len(line_differences)):
-    if line_differences[i] > 100:
+    if line_differences[i] > 65:
         demo_arr.append(i+1)
 
 demo_arr.append(len(line_start))
+
+print("Demo Arr", demo_arr)
 
 for i in range(0, len(demo_arr)):
     count = i + 1

@@ -6,21 +6,23 @@ from NewSegmentation.NewWholeSegmenting import arr2
 from NewSegmentation.NewWholeSegmenting import question_slices
 
 ################################################################
-cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Input_Roof.csv')
+cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Input_James.csv')
 
-pick = open('../BSavedModels/Input_Roof6.sav', 'rb')
+pick = open('../BSavedModels/Input_James.sav', 'rb')
 model = pickle.load(pick)
 pick.close()
 
+print("Done Read Model")
 # predict the character
-predicted_chars = model.predict(cell_df_new[0:120])
-
+predicted_chars = model.predict(cell_df_new[0:162])
+print("Done Prediction")
 
 # categories of SVM Model
 categories = ['o', '1', '2', '3', '4', '5', '6', '7', '8', '9',
               'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k',
               'l', 'm', 'n', 'p', 'r', 's', 't', 'u', 'v', 'w',
-              'y', 'z', 'B', 'F', 'H', 'I', 'N', 'R', 'T', '39', '.']
+              'y', 'z', 'B', 'F', 'H', 'I', 'N', 'R', 'T', '39',
+              '.', ',', 'J', 'A']
 
 
 new_predicion = []
