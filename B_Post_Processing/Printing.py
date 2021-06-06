@@ -6,16 +6,15 @@ from NewSegmentation.NewWholeSegmenting import arr2
 from NewSegmentation.NewWholeSegmenting import question_slices
 
 ################################################################
-cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Input_James.csv')
+cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Chaincode + Zone + Transition/Input_New_Issac.csv')
 
-pick = open('../BSavedModels/Input_James.sav', 'rb')
+pick = open('../BSavedModels/C + Z + T   Models/Test1.sav', 'rb')
 model = pickle.load(pick)
 pick.close()
 
-print("Done Read Model")
 # predict the character
-predicted_chars = model.predict(cell_df_new[0:162])
-print("Done Prediction")
+predicted_chars = model.predict(cell_df_new[0:210])
+
 
 # categories of SVM Model
 categories = ['o', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -97,7 +96,9 @@ print()
 
 
 print()
-print("Real Answer")
+print("Student Answer By the System")
+print("------------------------------------------------")
+print()
 print()
 # prin Actual results
 vote = -1
@@ -148,4 +149,5 @@ for j in range(0, len(word)):
         sys.stdout.write(" ")
     print()
 """
+
 ############################################################################
