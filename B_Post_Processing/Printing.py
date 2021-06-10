@@ -1,14 +1,20 @@
 import pandas as pd
 import pickle
 import sys
+from colorama import Fore
 from NewSegmentation.NewWholeSegmenting import arr1
 from NewSegmentation.NewWholeSegmenting import arr2
 from NewSegmentation.NewWholeSegmenting import question_slices
 
-################################################################
-cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/Input_Character_CSV/Chaincode + Zone + Transition/Input_New_Issac.csv')
 
-pick = open('../BSavedModels/C + Z + T   Models/Test1.sav', 'rb')
+# Roof | James(6430) | TF(6470) | Malli | 1877(6750) | 4(6880) | 5(7000) | Malli_2 | Marshy | Issac | Lokka(7510) | New_Marshy | New_Issac |
+# Baby | Baby_Error | Sales_Manager_Error | Kitchen | SM
+
+################################################################
+cell_df_new = pd.read_csv('../CharacterClassification/CSV Files/'
+                          'Input_Character_CSV/Chaincode + Zone + Transition/Input_SM.csv')
+
+pick = open('../BSavedModels/C + Z + T   Models/SVM_Model_41.sav', 'rb')
 model = pickle.load(pick)
 pick.close()
 
@@ -104,24 +110,36 @@ print()
 vote = -1
 newid = 0
 newcat = 0
+Whole_Arr = []
 for i in range(0, len(QuestionLines)):
     item = QuestionLines[i]
+    test1_Arr = []
     for j in range(0, len(item)):
+        test2_Arr = []
+        test1_Arr.append(test2_Arr)
         vote = vote + 1
         WChar = WordChar[vote]
         wordlength = item[j]
         for k in range(0, wordlength):
+            test3_Arr = []
+            test2_Arr.append(test3_Arr)
             newcat = newcat + WChar[k]
             for t in range(newid, newcat):
-                sys.stdout.write(str(new_predicion[t]))
+                sys.stdout.write(Fore.GREEN + str(new_predicion[t]))
+                test3_Arr.append(new_predicion[t])
             newid = newid + WChar[k]
             sys.stdout.write(" ")
         print()
     print()
+    Whole_Arr.append(test1_Arr)
 
 
 ############################################################################
 """
+
+
+
+
 # print Template without considering each question
 star = "*"
 for j in range(0, len(word)):

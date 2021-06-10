@@ -6,7 +6,7 @@ import pickle
 from NewSegmentation.NewWholeSegmenting import Char_Details
 
 
-filename = '../CSV Files/Input_Character_CSV/Chaincode + Zone + Transition/Input_New_Marshy.csv'
+filename = '../CSV Files/Input_Character_CSV/Chaincode + Zone + Transition/Test_Issac.csv'
 
 
 def append_list_as_row(filename, list_of_elem):

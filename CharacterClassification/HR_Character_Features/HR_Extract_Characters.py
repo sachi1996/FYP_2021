@@ -5,7 +5,7 @@ from NewSegmentation.NewLineSeg import projection_segment
 from NewSegmentation.NewWordSeg import word_segment
 from NewSegmentation.NewCharSeg import char_segment
 
-inputImage = 'G:/imwrite images/Given Images/Pick.jpg'
+inputImage = 'G:/imwrite images/Given Images/ManagerError.jpg'
 fullImage = cv2.imread(inputImage)
 plt.imshow(fullImage, cmap="gray")
 plt.show()
@@ -61,7 +61,7 @@ for x in range(len(line_start)):
     plt.imshow(line_slices[x], cmap='gray')
     plt.title(line_name)
     # cv2.imwrite("G:/imwrite images/"+str(line_name)+".jpg", img1)
-    plt.show()
+    # plt.show()
 
     # vericle projection is taken
     verticle_projection = np.sum(img1, 0)
@@ -108,7 +108,7 @@ for x in range(len(line_start)):
         plt.imshow(extract_char, cmap='gray')
         plt.title("line-" + str(x+1) + " : char-" + str(k+1))
         # cv2.imwrite("G:/imwrite images/"+str(line_name)+".jpg", img1)
-        plt.show()
+        # plt.show()
         BigChar.append(extract_char)
 
 print("No.of Characters - " + str(len(BigChar)))

@@ -4,7 +4,8 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
-cell_df = pd.read_csv('../CSV Files/Seperate_Answer_Sheets/Chaincode + Zone + Transition/All_New_Issac.csv')
+cell_df = pd.read_csv('../CSV Files/Seperate_Answer_Sheets'
+                      '/Chaincode + Zone + Transition/All_File.csv')
 
 X = cell_df.drop(['target_names', 'target'], axis='columns')
 y = cell_df.target
@@ -21,7 +22,8 @@ predict = cls.predict(X_test)
 accuracy = cls.score(X_test, y_test)
 
 
-pick = open('../../BSavedModels/C + Z + T   Models/Test1.sav', 'wb')
+pick = open(
+    '../../BSavedModels/C + Z + T   Models/SVM_Model_10.sav', 'wb')
 pickle.dump(cls, pick)
 pick.close()
 

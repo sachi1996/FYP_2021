@@ -5,7 +5,8 @@ from NewSegmentation.NewLineSeg import projection_segment
 from NewSegmentation.NewWordSeg import word_segment
 from NewSegmentation.NewCharSeg import char_segment
 
-inputImage = 'G:/imwrite images/Given Images/Issac.jpg'
+
+inputImage = 'G:/imwrite images/Given Images/New Testing/SM.jpg'
 fullImage = cv2.imread(inputImage)
 plt.imshow(fullImage, cmap="gray")
 plt.show()
